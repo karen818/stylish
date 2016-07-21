@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="contriApp">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Scott Contri Capstone</title>
+  <!-- angular script -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js"></script>
+  <!-- angular animate script -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.js"></script>
+  <!-- momentjs script -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+  <!-- my script -->
+  <script src="js/jquery-3.1.0.js"></script>
+  <script src="js/moment.js" charset="utf-8"></script>
+  <script src="js/app.js" charset="utf-8"></script>
+
+  <!-- font awesome css -->
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+
+  <!-- googlefonts -->
+  <link href='https://fonts.googleapis.com/css?family=Arvo:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+
+  <!-- bootstrap css -->
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style/bootstrapTheme.css">
+
+  <!-- my css -->
+  <link rel="stylesheet" href="style/style.css">
+
+</head>
+<body ng-controller="TextController">
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <h2 class="brand">Stylish</h2>
+  </div>
+  </nav>
+  <header>
+    <div class="container">
+
+        <div class="intro-text">
+
+            <div class="intro-lead-in">Discover your style</div>
+
+            <a href="#services" class="page-scroll btn btn-lg" ng-click="showUploadForm=!showUploadForm">Upload Text File</a>
+            <a href="#services" class="page-scroll btn btn-lg" ng-click="showPasteForm=!showPasteForm">Paste Text</a>
+        </div>
+    </div>
+  </header>
+
+    <div class="container">
+      <div class="row">
+
+        <!-- Upload Form -->
+        <div class="col-lg-3">  </div>
+        <div class="col-lg-6">
+          <form name="uploadForm" ng-submit="uploadText(newTextUpload)" ng-hide="showUploadForm" class="form" ng-model="uploadForm">
+            <label for="uploadForm">Upload Text File</label>
+            <input type="file" class="form-control" name="uploadText">
+            <button type="submit" name="uploadBtn" class="btn btn-primary btn-sm">Upload Text File</button>
+          </form>
+        </div>
+        <div class="col-lg-3">  </div>
+
+        <!-- Paste Form -->
+        <div class="col-lg-3">  </div>
+        <div class="col-lg-6">
+          <form name="pasteForm" ng-submit="pasteText(newTextPaste)" ng-hide="showPasteForm" class="form" ng-model="pasteForm">
+            <label for="pasteForm">Paste Text</label>
+            <textarea name="pasteText" rows="4" cols="50"></textarea>
+            <button type="submit" name="pasteBtn" class="btn btn-primary btn-sm">Upload Text</button>
+          </form>
+        </div>
+        <div class="col-lg-3">  </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="well">
+        <p id="dvContent"></p>
+
+      </div>
+    </div>
+
+<footer>Copyright &copy; 2016 Scott Contri</footer>
+</body>
+</html>
