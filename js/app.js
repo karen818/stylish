@@ -1,9 +1,66 @@
+function getText(){
+    window.onload = function() {
+    		var fileInput = document.getElementById('fileInput');
+    		var fileDisplayArea = document.getElementById('fileDisplayArea');
+
+    		fileInput.addEventListener('change', function(e) {
+    			var file = fileInput.files[0];
+    			var textType = /text.*/;
+
+    			if (file.type.match(textType)) {
+    				var reader = new FileReader();
+
+    				reader.onload = function(e) {
+                        console.log(reader.result);
+    					fileDisplayArea.innerText = reader.result;
+    				}
+
+    				reader.readAsText(file);
+    			} else {
+    				fileDisplayArea.innerText = "File not supported!"
+    			}
+    		});
+    }
+}
+
+
+
 var app = angular.module("contriApp", []);
 
-app.controller("TextController", function($scope){
+app.controller("TextController", function($scope, $http){
     $scope.view = {};
     $scope.newTextUpload = {};
     $scope.newTextPaste = {};
+    $scope.view.textFiles = [];
+
+    $scope.getTextUpload = function(newPost){
+        $scope.newTextUpload = {};
+        // newTextUpload.textUpload = ;
+        $scope.view.textFiles.push(newTextUpload);
+
+        var reader = new FileReader();
+    }
+
+    var textString = getText();
+    $http({
+      method: 'GET',
+      url: "http://52.207.252.14:5000/v1.0.0/return_author_probability?txt=" + textString
+    }).then(function successCallback(response) {
+        
+        $scope.view.authors = [];
+        var authors = response.data.results;
+        $scope.view.firstName = response.data.results[0].first_name;
+        $scope.view.lastName = response.data.results[0].last_name;
+        $scope.view.prob = response.data.results[0].prob;
+        console.log($scope.view.firstName );
+        // this callback will be called asynchronously
+        // when the response is available
+      }, function errorCallback(response) {
+          console.log('error');
+        // called asynchronously if an error occurs
+        // or server returns response with an error status.
+      });
+
 
     $scope.view.authors = [
         {
@@ -53,21 +110,5 @@ app.controller("TextController", function($scope){
 
 
 $(document).ready(function(){
-  $("#dvContent").append("<ul></ul>");
-  $.ajax({
-    type: "GET",
-    url: "https://www.goodreads.com/search.xml?key=7FR037rUMaacRnUp5JJULw&q=Stephen+King",
-    dataType: "xml",
-    success: function(xml){
-    $(xml).find('work').each(function(){
-      var authorID = $(this).find('author id').text();
 
-      var author = $(this).find('name').text();
-      $("<li></li>").html(author).appendTo("#dvContent ul");
-    });
-  },
-  error: function() {
-    alert("An error occurred while processing XML file.");
-  }
-  });
 });

@@ -58,8 +58,8 @@
         <div class="col-lg-6">
           <form name="uploadForm" ng-submit="uploadText(newTextUpload)" ng-hide="showUploadForm" class="form" ng-model="uploadForm">
             <label for="uploadForm">Upload Text File</label>
-            <input type="file" class="form-control" name="uploadText">
-            <button type="submit" name="uploadBtn" class="btn btn-primary btn-sm">Upload Text File</button>
+            <input type="file" class="form-control" name="textUpload" ng-model="newTextUpload.textUpload" id="fileInput">
+            <!-- <button type="submit" name="uploadBtn" class="btn btn-primary btn-sm">Upload Text File</button> -->
           </form>
         </div>
         <div class="col-lg-3">  </div>
@@ -78,9 +78,19 @@
     </div>
 
     <div class="container">
-      <div class="well">
-        <p id="dvContent"></p>
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="well media panel">
+            <div class="panel-heading">
+              <h3>{{ view.firstName }} {{view.lastName}}&nbsp;&nbsp;&nbsp;<span class="inline"><img src="http://a5.files.biography.com/image/upload/c_fill,cs_srgb,dpr_1.0,g_face,h_300,q_80,w_300/MTE5NDg0MDU0OTUwODcyNTkx.jpg" alt="" class="media-object"/></span> </h3>
+            </div>
+            <div class="well">
+              <h4>{{view.prob * 100 | number:0}}%</h4>
+            <p id="fileDisplayArea"></p>
+            </div>
 
+          </div>
+        </div>
       </div>
     </div>
 
