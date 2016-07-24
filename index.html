@@ -79,22 +79,51 @@
 
     <div class="container">
       <div class="row">
-        <div class="col-lg-6">
-          <h1>Your Results</h1>
+        <h1>Your Results</h1>
+        <div class="col-lg-12">
           <div class="well media panel" ng-repeat="author in view.authorsArray">
-            <div class="panel-heading">
-              <h3>{{author.first_name}} {{author.last_name}}&nbsp;&nbsp;&nbsp;<span class="inline"><img src="http://a5.files.biography.com/image/upload/c_fill,cs_srgb,dpr_1.0,g_face,h_300,q_80,w_300/MTE5NDg0MDU0OTUwODcyNTkx.jpg" alt="" class="media-object"/></span> </h3>
-            </div>
-            <div class="well">
-              <h4>{{author.prob * 100 | number:0}}%</h4>
-            <p id="fileDisplayArea"></p>
-            </div>
+            <div class="col-lg-6">
+              <div class="panel-heading">
+              <div class="row">
+                <div class="col-lg-4">
+                  <img src="http://a5.files.biography.com/image/upload/c_fill,cs_srgb,dpr_1.0,g_face,h_300,q_80,w_300/MTE5NDg0MDU0OTUwODcyNTkx.jpg" alt="" class="media-object"/>
+                </div>
+                <div class="col-lg-8">
 
+                  <h3>{{author.first_name}} {{author.last_name}}</h3>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <p id="fileDisplayArea" class="well">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                  </div>
+                </div>
+              </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="panel-heading">
+                <h4>Similarity: {{author.prob * 100 | number:0}}%</h4>
+
+
+                  <!-- <ul id="bars"> -->
+                    <!-- <div class="container"> -->
+                    <div class="progress">
+                      <div class="progress-bar" role="progressbar" aria-valuenow="{{author.prob * 100 | number:0}}" aria-valuemin="0" aria-valuemax="100" style="width:{{author.prob * 100 | number:0}}%">
+                        <h4 class="centered">{{author.prob * 100 | number:0}}%</h4>
+                      </div>
+                    </div>
+                  <!-- </div> -->
+
+              </div>
+
+            </div>
           </div>
         </div>
+
+
       </div>
     </div>
 
-<footer>Copyright &copy; 2016 Scott Contri</footer>
+<footer>Copyright &copy; 2016 Scott Contri (back-end) | Karen Kelly (front-end)</footer>
 </body>
 </html>

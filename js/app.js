@@ -1,50 +1,3 @@
-$(function() {
-    console.log( "ready!" );
-
-    $.ajax({
-    type: 'GET',
-    dataType: 'json',
-    url: "http://52.207.252.14:5000/v1.0.0/return_author_probability?txt=blah%20blah%20blah"
-}).then (function(data){
-        var authors = data.results;
-        authors.forEach(function(author){
-            var firstName = author.first_name;
-            var lastName = author.last_name;
-            var probability = author.prob;
-            console.log(author);
-            $("<li></li>").html(firstName + " " + lastName + " " + probability*100).appendTo("#dvContent ul");
-            var authorQueryString = firstName + '%20' + lastName;
-            console.log(authorQueryString);
-            var searchUrl = "https://www.goodreads.com/api/author_url/" + authorQueryString + "?key=7FR037rUMaacRnUp5JJULw";
-            authorQueryRequest = $.ajax({
-                type: "GET",
-                dataType: 'xml',
-                url: searchUrl
-        }).then(function (data) {
-              $(data).find('author').each(function(){
-                //   console.log(data);
-                  var authorID = $(this).attr('id');
-                  var authorLink = $(this).find('link').text();
-                  $("#link").attr('href', authorLink)
-                //   $("<li></li>").html(authorID).appendTo("#dvContent ul");
-                  $.ajax({
-                      type: 'GET',
-                      dataType: 'xml',
-                      url: "https://www.goodreads.com/author/show/" + authorID + "?format=xml&key=7FR037rUMaacRnUp5JJULw"
-                  }).then(function(data){
-                      console.log("done");
-                      var authorPic = $(data).find('author>image_url').html();
-                      authorPic = authorPic.replace("<![CDATA[", "").replace("]]>", "");
-                      console.log(authorPic);
-                      $("<li></li>").html('<img src="' + authorPic + '" />').appendTo("#dvContent ul");
-                    //   $("#picture").attr("src", authorPic);
-                  });
-              });
-          });
-
-        });
-    });
-});
 
 function getUploadText(){
     window.onload = function() {
@@ -71,6 +24,23 @@ function getUploadText(){
 
 
 var app = angular.module("contriApp", []);
+
+app.filter('ratingFilter', function() {
+   return function (input) {
+
+     var ratingImg = { 0 : "./images/star-0.png",
+                       1 : "./images/star-1.png",
+                       2 : "./images/star-23.png",
+                       3 : "./images/star-23.png",
+                       4 : "./images/star-4.png",
+                       5 : "./images/star-5.png"
+                     };
+
+     var ratingNumber =  Math.round(input * 5);
+     var output = ratingImg[ratingNumber];
+     return output;
+   };
+ });
 
 app.controller("TextController", function($scope, $http){
     $scope.view = {};
@@ -136,7 +106,5 @@ app.controller("TextController", function($scope, $http){
 // });
 
 
-$(document).ready(function(){
 
-});
 // });
