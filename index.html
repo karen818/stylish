@@ -44,8 +44,8 @@
 
             <div class="intro-lead-in">Discover your style</div>
 
-            <a href="#services" class="page-scroll btn btn-lg" ng-click="showUploadForm=!showUploadForm">Upload Text File</a>
-            <a href="#services" class="page-scroll btn btn-lg" ng-click="showPasteForm=!showPasteForm">Paste Text</a>
+            <a href="#services" class="page-scroll btn btn-lg" ng-click="view.showUploadForm()">Upload Text File</a>
+            <a href="#services" class="page-scroll btn btn-lg" ng-click="view.showPasteForm()">Paste Text</a>
         </div>
     </div>
   </header>
@@ -54,33 +54,38 @@
       <div class="row">
 
         <!-- Upload Form -->
-        <div class="col-lg-3">  </div>
+        <div class="col-lg-3">&nbsp;</div>
         <div class="col-lg-6">
-          <form name="uploadForm" ng-submit="uploadText(newTextUpload)" ng-hide="showUploadForm" class="form" ng-model="uploadForm">
-            <label for="uploadForm">Upload Text File</label>
-            <input type="file" class="form-control" name="textUpload" ng-model="newTextUpload.textUpload" id="fileInput">
-            <!-- <button type="submit" name="uploadBtn" class="btn btn-primary btn-sm">Upload Text File</button> -->
-          </form>
+            <form name="uploadForm" ng-submit="uploadText(newTextUpload)" ng-show="showUploadForm" class="form" ng-model="uploadForm">
+              <div class="panel-heading marginTop">
+              <div class="well">
+                <label for="uploadForm">Upload Text File</label>
+                <input type="file" class="form-control" name="textUpload" ng-model="newTextUpload" id="fileInput"><br>
+                <button type="button" name="uploadBtn" class="btn btn-primary btn-sm" ng-click="view.uploadText()">Upload Text File</button>
+              </div>
+            </div>
+            </form>
         </div>
-        <div class="col-lg-3"> <a href="#"></a> </div>
+        <div class="col-lg-3">&nbsp;</div>
 
         <!-- Paste Form -->
         <div class="col-lg-3">  </div>
         <div class="col-lg-6">
-          <form name="pasteForm" ng-submit="pasteText(newTextPaste)" ng-hide="showPasteForm" class="form" ng-model="pasteForm">
-            <label for="pasteForm">Paste Text</label>
-            <textarea name="pasteText" rows="4" cols="50"></textarea>
-            <button type="submit" name="pasteBtn" class="btn btn-primary btn-sm">Upload Text</button>
-          </form>
+          <div class="panel marginTop">
+            <form name="pasteForm" ng-submit="pasteText(newTextPaste)" ng-show="showPasteForm" class="form" ng-model="pasteForm">
+              <textarea name="pasteText" rows="4" cols="50" ng-model="newPasteUpload" id="pasteInput" placeholder="Paste text here"></textarea>
+              <button type="button" name="pasteBtn" class="btn btn-primary btn-sm">Upload Text</button>
+            </form>
+          </div>
         </div>
         <div class="col-lg-3">  </div>
       </div>
     </div>
 
-    <div class="container">
+    <div class="container" ng-hide="results">
       <div class="row">
-        <h1>Your Results</h1>
         <div class="col-lg-12">
+          <h1>Your Results</h1>
           <div class="well media panel" ng-repeat="author in view.authorsArray">
             <div class="col-lg-6">
               <div class="panel-heading">

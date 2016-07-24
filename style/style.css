@@ -244,8 +244,26 @@ header .intro-text .intro-heading {
   }
 }
 
+textarea {
+  margin: 20px;
+  width: 90%;
+
+}
+
+input#fileInput {
+  color: #1F5673;
+}
+
+label {
+  font-size: 120%;
+}
+
 .centered {
   text-align: center;
+}
+
+.marginTop {
+  margin-top: 20px;
 }
 
 .progress {
