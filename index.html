@@ -74,8 +74,9 @@
           <div class="panel marginTop">
             <form name="pasteForm" ng-submit="pasteText(newTextPaste)" ng-show="showPasteForm" class="form" ng-model="pasteForm">
               <textarea name="pasteText" rows="4" cols="50" ng-model="newPasteUpload" id="pasteInput" placeholder="Paste text here"></textarea>
-              <button type="button" name="pasteBtn" class="btn btn-primary btn-sm">Upload Text</button>
+              <button type="button" name="pasteBtn" class="btn btn-primary btn-sm" ng-click="view.pasteText()">Upload Text</button>
             </form>
+
           </div>
         </div>
         <div class="col-lg-3">  </div>
