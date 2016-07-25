@@ -13,7 +13,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
   <!-- my script -->
   <script src="js/jquery-3.1.0.js"></script>
-  <script src="js/moment.js" charset="utf-8"></script>
+  <script src="js/xml2json.js"></script>
   <script src="js/app.js" charset="utf-8"></script>
 
   <!-- font awesome css -->
@@ -71,7 +71,7 @@
         <div class="col-lg-6">
             <form name="pasteForm" ng-submit="pasteText(newTextPaste)" ng-show="showPasteForm" class="form" ng-model="pasteForm">
               <div class="panel-heading marginTop">
-              <textarea name="pasteText" rows="4" cols="50" ng-model="newPasteUpload" id="pasteInput" placeholder="Paste text here"></textarea>
+              <textarea name="pasteText" rows="4" cols="50" ng-model="newPasteUpload" id="pasteInput" placeholder="Paste text here" focus></textarea>
               <button type="button" name="pasteBtn" class="btn btn-primary btn-sm" ng-click="view.pasteText()">Upload Text</button><br>
             </form>
 
@@ -81,16 +81,16 @@
       </div>
     </div>
 
-    <div class="container" ng-hide="results">
+    <div class="container" ng-show="view.results">
       <div class="row">
+        <h1 class="well">Your Results</h1>
         <div class="col-lg-12">
-          <h1>Your Results</h1>
           <div class="well media panel" ng-repeat="author in view.authorsArray">
             <div class="col-lg-6">
               <div class="panel-heading">
               <div class="row">
                 <div class="col-lg-4">
-                  <img src="http://a5.files.biography.com/image/upload/c_fill,cs_srgb,dpr_1.0,g_face,h_300,q_80,w_300/MTE5NDg0MDU0OTUwODcyNTkx.jpg" alt="" class="media-object"/>
+                  <img src="{{author.authorImg}}" alt="" class="media-object"/>
                 </div>
                 <div class="col-lg-8">
 
@@ -107,27 +107,18 @@
             <div class="col-lg-6">
               <div class="panel-heading">
                 <h4>Similarity: {{author.prob * 100 | number:0}}%</h4>
-
-
-                  <!-- <ul id="bars"> -->
-                    <!-- <div class="container"> -->
                     <div class="progress">
                       <div class="progress-bar" role="progressbar" aria-valuenow="{{author.prob * 100 | number:0}}" aria-valuemin="0" aria-valuemax="100" style="width:{{author.prob * 100 | number:0}}%">
                         <h4 class="centered">{{author.prob * 100 | number:0}}%</h4>
                       </div>
                     </div>
-                  <!-- </div> -->
-
               </div>
-
             </div>
           </div>
         </div>
-
-
       </div>
     </div>
 
-<footer>Copyright &copy; 2016 Scott Contri (back-end) | Karen Kelly (front-end)</footer>
+<footer>Copyright &copy; 2016 Scott Contri (back-end) | Karen Kelly (front-end) All Rights Reserved. </footer>
 </body>
 </html>
