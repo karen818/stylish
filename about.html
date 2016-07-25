@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="contriApp">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Scott Contri Capstone</title>
+  <!-- angular script -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js"></script>
+  <!-- angular animate script -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.js"></script>
+  <!-- momentjs script -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+  <!-- my script -->
+  <script src="js/jquery-3.1.0.js"></script>
+  <script src="js/xml2json.js"></script>
+  <script src="js/app.js" charset="utf-8"></script>
+
+  <!-- font awesome css -->
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+
+  <!-- googlefonts -->
+  <link href='https://fonts.googleapis.com/css?family=Arvo:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+
+  <!-- bootstrap css -->
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style/bootstrapTheme.css">
+
+  <!-- my css -->
+  <link rel="stylesheet" href="style/style.css">
+
+</head>
+<body ng-controller="TextController">
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <h2 class="brand navbar-left">Stylish</h2>
+    <a href="index.html" class="navbar-text navbar-right" id="about">Back to main page</a>
+  </div>
+  </nav>
+  <header>
+    <div class="container">
+      <div class="intro-text">
+      <div class="panel-heading indent">
+        <h2>Overview</h2>
+        <div class="well">
+          <p>Stylish is a two-week data science project made by Scott Contri for his Galvanize capstone project that aims to identify the style of a writer based off his/her similarity to a famous author using natural language processing (NLP). It currently uses a Random Forest model to make its predictions based off a training set consisting of 46 authors  from my personal collection of ebooks (in .txt format). The model runs on an associated website named Stylish, designed and programmed by Karen Kelly, using an EC2 instance from Amazon Web Services (AWS).</p>
+        </div>
+      </div><br><br><br>
+            <div class="row">
+              <div class="col-lg-12 panel-heading">
+                <h2>Motivation</h2>
+                <p class="quote">The limits of my language mean the limits of my world.<br>
+                --Ludwig Wittgenstein</p>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div>
+                      <div class="well">
+                        <p>
+                          Everyday people tell themselves stories in their heads. These stories are told in voices unique to them and with a particular cadence depending on the terrain their mind is wandering. Using a personalized style to create and express their dreams, ideas, and of course, stories, people try to present themselves using various mediums. Often people try to express themselves through writing.</p>
+                          <p>Everyone from Shakespeare (NLP was used to investigate suspicions of the playwright’s collaboration with others) to the unabomber, Ted Kaczynski (whose brother turned him in after recognizing Ted’s writing style in the unabomber’s manifesto), have a unique linguistic style. However, although almost anyone can clearly read the difference in style between Hamlet and Industrial Society and Its Future, differentiating between two writers is usually a challenge for most people.</p>
+                          <p>In literature, style is loosely defined as the way an author uses words. With such a vacant definition it is obviously difficult to measure a writer’s</p>
+
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div>
+                      <div class="well">
+                        <p>style, which is the challenge stylometry ventures to take on. Stylometry applies the study of linguistic style and is currently used to identify authorship of documents.</p>
+                          <p>Unfortunately, no method has yet been produced to accurately identify different styles amongst a large amount of documents. The number of applications that could be granted by a program that could perform this incredible task are virtually limitless. Recommendations for books could be provided to readers based off of the style of books they have previously enjoyed reading. The efficiency of publication could be enhanced by syncing the style publishers were selling with the style authors were offering.</p>
+                          <p>Perhaps one day machines could even produce interpretable stories that would fascinate and terrify us, but in the meantime I’d really just like to get a better understanding of my own writing style. Maybe you would too.</p><br>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+  </header>
+
+    <div class="container">
+      <div class="row">
+
+        <!-- Upload Form -->
+        <div class="col-lg-3">&nbsp;</div>
+        <div class="col-lg-6">
+            <form name="uploadForm" ng-submit="uploadText(newTextUpload)" ng-show="showUploadForm" class="form" ng-model="uploadForm">
+                <div class="panel-heading marginTop">
+                <label for="uploadForm">Upload Text File</label>
+                <input type="file" class="form-control" name="textUpload" ng-model="newTextUpload" id="fileInput"><br>
+                <button type="button" name="uploadBtn" class="btn btn-primary btn-sm" ng-click="view.uploadText()">Upload Text File</button>
+              </div>
+            </form>
+        </div>
+        <div class="col-lg-3">&nbsp;</div>
+
+        <!-- Paste Form -->
+        <div class="col-lg-3">  </div>
+        <div class="col-lg-6">
+            <form name="pasteForm" ng-submit="pasteText(newTextPaste)" ng-show="showPasteForm" class="form" ng-model="pasteForm">
+              <div class="panel-heading marginTop">
+              <textarea name="pasteText" rows="4" cols="50" ng-model="newPasteUpload" id="pasteInput" placeholder="Paste text here" focus></textarea>
+              <button type="button" name="pasteBtn" class="btn btn-primary btn-sm" ng-click="view.pasteText()">Upload Text</button><br>
+            </form>
+
+          </div>
+        </div>
+        <div class="col-lg-3">  </div>
+      </div>
+    </div>
+
+    <div class="container" ng-show="view.results">
+      <div class="row">
+        <h1 class="well">Your Results</h1>
+        <div class="col-lg-12">
+          <div class="well media panel" ng-repeat="author in view.authorsArray">
+            <div class="col-lg-6">
+              <div class="panel-heading">
+              <div class="row">
+                <div class="col-lg-8">
+
+                  <h3>{{author.first_name}} {{author.last_name}}</h3>
+                </div>
+                <div class="col-lg-4" class="media-left">
+                  <img ng-src="{{author.authorDetails.authorImg}}" alt="author photo" class="media-object"/>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                      <p id="fileDisplayArea" class="well">{{author.authorDetails.authorBio}}</p>
+                  </div>
+                </div>
+              </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="panel-heading">
+                <h4>Similarity: {{author.prob * 100 | number:0}}%</h4>
+                    <div class="progress">
+                      <div class="progress-bar" role="progressbar" aria-valuenow="{{author.prob * 100 | number:0}}" aria-valuemin="0" aria-valuemax="100" style="width:{{author.prob * 100 | number:0}}%">
+                        <h4 class="centered">{{author.prob * 100 | number:0}}%</h4>
+                      </div>
+                    </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<footer>Copyright &copy; 2016 Scott Contri (back-end) | Karen Kelly (front-end) All Rights Reserved. </footer>
+</body>
+</html>

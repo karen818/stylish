@@ -153,7 +153,8 @@ label {
    color: #565656;
 }
 
-.navbar-text#about {
+.navbar-text#about,
+.quote {
   font-size: 150%;
   color: #F0E7D8;
   text-shadow: 2px 2px 4px #000000;
@@ -171,6 +172,10 @@ label {
 .well {
   background-color: #F0E7D8;
   text-align: left;
+}
+
+.indent {
+  margin: 0 100px;
 }
 
 .form-control {
