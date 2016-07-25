@@ -153,7 +153,16 @@ label {
    color: #565656;
 }
 
+.navbar-text#about {
+  font-size: 150%;
+  color: #F0E7D8;
+  text-shadow: 2px 2px 4px #000000;
+}
 
+.navbar-text#about:hover {
+  font-size: 170%;
+  text-decoration: none;
+}
 .brand {
   text-align: left;
   padding-bottom: 10px;
