@@ -29,6 +29,7 @@ h1, h2, h3, h5 {
   color: #F0E7D8;
   text-shadow: 2px 2px 4px #000000;
   font-family: 'Pacifico', cursive;
+  padding-bottom: 10px;
 }
 
 h1.well {
@@ -290,4 +291,10 @@ label {
 .progress-bar {
   height: 100px;
   background-color: #565656;
+}
+
+
+#fileDisplayArea {
+  height: 200px;
+  overflow: scroll;
 }

@@ -25,7 +25,7 @@ function getUploadText(){
 
 var app = angular.module("contriApp", []);
 
-app.controller("TextController", function($scope, $http){
+app.controller("TextController", function($scope, $http, $sce){
     $scope.view = {};
     $scope.newTextUpload = {};
     $scope.newTextPaste = {};
@@ -44,12 +44,10 @@ app.controller("TextController", function($scope, $http){
     $scope.view.uploadText = function(newUpload){
         $scope.view.results=!$scope.view.results;
         var fileString = getUploadText();
-        console.log(fileString);
         $http({
-          method: 'GET',
-          url: "http://52.207.252.14:5000/v1.0.0/return_author_probability?txt=" + fileString
+          method: 'POST',
+          url: "http://54.236.208.63:5000/v1.0.0/return_author_probability?txt=" + fileString
         }).then(function successCallback(response) {
-            console.log("http://52.207.252.14:5000/v1.0.0/return_author_probability?txt=" + fileString);
             $scope.view.authorsArray = response.data.results;
 
           }, function errorCallback(response) {
@@ -62,8 +60,8 @@ app.controller("TextController", function($scope, $http){
         var fileString = $scope.newPasteUpload;
 
         $http({
-          method: 'GET',
-          url: "http://52.207.252.14:5000/v1.0.0/return_author_probability?txt=" + fileString
+          method: 'POST',
+          url: "http://54.236.208.63:5000/v1.0.0/return_author_probability?txt=" + fileString
         }).then(function successCallback(response) {
             $scope.view.authorsArray = response.data.results;
             var authors = response.data.results;
@@ -83,14 +81,16 @@ app.controller("TextController", function($scope, $http){
                         {transformResponse:function(data){
                             var x2js = new X2JS();
                             var json = x2js.xml_str2json( data );
-                            var authorBio = json.GoodreadsResponse.author.about;
-                            console.log(authorBio);
-                            var authorImg = json.GoodreadsResponse.author.image_url;
-                            console.log(authorImg);
-                            var authorLink = json.GoodreadsResponse.author.link;
-                            console.log(authorLink);
-                            var books = json.GoodreadsResponse.books;
-                            console.log(books);
+                            var authorDetails = {
+                                };
+                            authorDetails.authorBio = json.GoodreadsResponse.author.about;
+
+                            authorDetails.authorImg = json.GoodreadsResponse.author.image_url;
+
+                            authorDetails.authorLink = json.GoodreadsResponse.author.link;
+
+                            author.authorDetails = authorDetails;
+                            console.log(author.authorDetails);
 
                         }
 
