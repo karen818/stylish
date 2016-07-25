@@ -25,7 +25,7 @@ function getUploadText(){
 
 var app = angular.module("contriApp", []);
 
-app.controller("TextController", function($scope, $http, $sce){
+app.controller("TextController", function($scope, $http){
     $scope.view = {};
     $scope.newTextUpload = {};
     $scope.newTextPaste = {};
@@ -49,10 +49,44 @@ app.controller("TextController", function($scope, $http, $sce){
           url: "http://54.236.208.63:5000/v1.0.0/return_author_probability?txt=" + fileString
         }).then(function successCallback(response) {
             $scope.view.authorsArray = response.data.results;
+            var authors = response.data.results;
+            authors.forEach(function(author){
+                var firstName = author.first_name;
+                var lastName = author.last_name;
+                var authorQueryString = firstName + '%20' + lastName;
+                var searchUrl = "https://www.goodreads.com/api/author_url/" + authorQueryString + "?key=7FR037rUMaacRnUp5JJULw";
+            $http.get( searchUrl,
+                {transformResponse:function(data) {
+                        var x2js = new X2JS();
+                        var json = x2js.xml_str2json( data );
+                        var authorID = json.GoodreadsResponse.author._id;
+                        console.log(authorID);
+                        var idUrl = "https://www.goodreads.com/author/show/" + authorID + "?format=xml&key=7FR037rUMaacRnUp5JJULw";
+                        $http.get(idUrl,
+                        {transformResponse:function(data){
+                            var x2js = new X2JS();
+                            var json = x2js.xml_str2json( data );
+                            var authorDetails = {
+                                };
+                            authorDetails.authorBio = json.GoodreadsResponse.author.about;
 
-          }, function errorCallback(response) {
-              console.log('error');
+                            authorDetails.authorImg = json.GoodreadsResponse.author.image_url;
+
+                            authorDetails.authorLink = json.GoodreadsResponse.author.link;
+
+                            author.authorDetails = authorDetails;
+
+                        }
+
+                        })
+                        }
+
+            }).then(function successCallback(data){
+
+            });
+
           });
+      });//here
     }
 
     $scope.view.pasteText = function(newPaste){
@@ -102,6 +136,6 @@ app.controller("TextController", function($scope, $http, $sce){
             });
 
           });
-      });
+      });//here
   }
 });
