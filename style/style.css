@@ -180,20 +180,8 @@ a.active {
   background-color: #565656;
   border-color: #565656;
 }
-.btn-sm:active,
-.btn-sm.active,
-.open .dropdown-toggle.btn-sm {
-  background-image: none;
-}
 
-
-.btn-lg:active,
-.btn-lg.active,
-.open .dropdown-toggle.btn-lg {
-  background-image: none;
-}
-
-header {
+body {
   background-image: url('book2.jpg');
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -247,15 +235,32 @@ header .intro-text .intro-heading {
 textarea {
   margin: 20px;
   width: 90%;
-
+  background-color: #F0E7D8;
+  color: #1F5673;
 }
 
 input#fileInput {
-  color: #1F5673;
+  color: #F0E7D8;
 }
 
 label {
   font-size: 120%;
+}
+
+::-webkit-input-placeholder {
+   color: #1F5673;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: #1F5673;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: #1F5673;
+}
+
+:-ms-input-placeholder {
+   color: #1F5673;
 }
 
 .centered {

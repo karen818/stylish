@@ -12,6 +12,7 @@ function getUploadText(){
 
     				reader.onload = function(e) {
                         console.log(reader.result);
+                        return reader.result;
     				}
 
     				reader.readAsText(file);
@@ -51,39 +52,27 @@ app.controller("TextController", function($scope, $http){
           method: 'GET',
           url: "http://52.207.252.14:5000/v1.0.0/return_author_probability?txt=" + fileString
         }).then(function successCallback(response) {
-
+            console.log("http://52.207.252.14:5000/v1.0.0/return_author_probability?txt=" + fileString);
             $scope.view.authorsArray = response.data.results;
-            console.log($scope.view.authorsArray);
 
-
-            // this callback will be called asynchronously
-            // when the response is available
           }, function errorCallback(response) {
               console.log('error');
-            // called asynchronously if an error occurs
-            // or server returns response with an error status.
           });
 
     }
 
     $scope.view.pasteText = function(newPaste){
         var fileString = $scope.newPasteUpload;
-        console.log(fileString);
+
         $http({
           method: 'GET',
           url: "http://52.207.252.14:5000/v1.0.0/return_author_probability?txt=" + fileString
         }).then(function successCallback(response) {
-
+            console.log("http://52.207.252.14:5000/v1.0.0/return_author_probability?txt=" + fileString);
             $scope.view.authorsArray = response.data.results;
-            console.log($scope.view.authorsArray);
 
-
-            // this callback will be called asynchronously
-            // when the response is available
           }, function errorCallback(response) {
               console.log('error');
-            // called asynchronously if an error occurs
-            // or server returns response with an error status.
           });
     }
 });

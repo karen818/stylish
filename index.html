@@ -57,13 +57,11 @@
         <div class="col-lg-3">&nbsp;</div>
         <div class="col-lg-6">
             <form name="uploadForm" ng-submit="uploadText(newTextUpload)" ng-show="showUploadForm" class="form" ng-model="uploadForm">
-              <div class="panel-heading marginTop">
-              <div class="well">
+                <div class="panel-heading marginTop">
                 <label for="uploadForm">Upload Text File</label>
                 <input type="file" class="form-control" name="textUpload" ng-model="newTextUpload" id="fileInput"><br>
                 <button type="button" name="uploadBtn" class="btn btn-primary btn-sm" ng-click="view.uploadText()">Upload Text File</button>
               </div>
-            </div>
             </form>
         </div>
         <div class="col-lg-3">&nbsp;</div>
@@ -71,10 +69,10 @@
         <!-- Paste Form -->
         <div class="col-lg-3">  </div>
         <div class="col-lg-6">
-          <div class="panel marginTop">
             <form name="pasteForm" ng-submit="pasteText(newTextPaste)" ng-show="showPasteForm" class="form" ng-model="pasteForm">
+              <div class="panel-heading marginTop">
               <textarea name="pasteText" rows="4" cols="50" ng-model="newPasteUpload" id="pasteInput" placeholder="Paste text here"></textarea>
-              <button type="button" name="pasteBtn" class="btn btn-primary btn-sm" ng-click="view.pasteText()">Upload Text</button>
+              <button type="button" name="pasteBtn" class="btn btn-primary btn-sm" ng-click="view.pasteText()">Upload Text</button><br>
             </form>
 
           </div>
