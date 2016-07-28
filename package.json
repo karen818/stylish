@@ -1,0 +1,19 @@
+{
+  "name": "stylish",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/karen818/stylish.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/karen818/stylish/issues"
+  },
+  "homepage": "https://github.com/karen818/stylish#readme"
+}

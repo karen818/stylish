@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Scott Contri Capstone</title>
+  <title>Stylish - Scott Contri Capstone</title>
   <!-- angular script -->
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js"></script>
   <!-- angular animate script -->
@@ -57,11 +57,11 @@
         <!-- Upload Form -->
         <div class="col-lg-3">&nbsp;</div>
         <div class="col-lg-6">
-            <form name="uploadForm" ng-submit="uploadText(newTextUpload)" ng-show="showUploadForm" class="form" ng-model="uploadForm">
+            <form name="uploadForm" ng-show="showUploadForm" class="form" ng-model="uploadForm">
                 <div class="panel-heading marginTop">
                 <label for="uploadForm">Upload Text File</label>
                 <input type="file" class="form-control" name="textUpload" ng-model="newTextUpload" id="fileInput"><br>
-                <button type="button" name="uploadBtn" class="btn btn-primary btn-sm" ng-click="view.uploadText()">Upload Text File</button>
+                <button type="button" name="uploadBtn" class="btn btn-primary btn-sm" id="uploadBtn" ng-click="view.uploadText()">Upload Text File</button>
               </div>
             </form>
         </div>
@@ -70,7 +70,7 @@
         <!-- Paste Form -->
         <div class="col-lg-3">  </div>
         <div class="col-lg-6">
-            <form name="pasteForm" ng-submit="pasteText(newTextPaste)" ng-show="showPasteForm" class="form" ng-model="pasteForm">
+            <form name="pasteForm" ng-show="showPasteForm" class="form" ng-model="pasteForm">
               <div class="panel-heading marginTop">
               <textarea name="pasteText" rows="4" cols="50" ng-model="newPasteUpload" id="pasteInput" placeholder="Paste text here" focus></textarea>
               <button type="button" name="pasteBtn" class="btn btn-primary btn-sm" ng-click="view.pasteText()">Upload Text</button><br>
