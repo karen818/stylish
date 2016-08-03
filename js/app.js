@@ -51,8 +51,8 @@ app.controller("TextController", function($scope, $http){
         $scope.view.results=!$scope.view.results;
 
         $http({
-          method: 'POST',
-          url: "http://54.236.208.63:5000/v1.0.0/return_author_probability?txt=blah"
+          method: 'GET',
+          url: "http://52.207.252.14:5000/v1.0.0/return_author_probability?txt="
         }).then(function successCallback(response) {
             $scope.view.authorsArray = response.data.results;
             var authors = response.data.results;
@@ -100,10 +100,17 @@ app.controller("TextController", function($scope, $http){
         var fileString = $scope.newPasteUpload;
         console.log(fileString);
 
-        $http({
-          method: 'POST',
-          url: "http://54.236.208.63:5000/v1.0.0/return_author_probability?txt=" + fileString
-        }).then(function successCallback(response) {
+        var req = {
+             method: 'GET',
+             url: 'http://52.207.252.14:5000/v1.0.0/return_author_probability?txt=' + fileString,
+             dataType: 'json',
+             contentType: "application/json",
+
+             data: { txt: fileString }
+            }
+
+        $http(req)
+         .then(function successCallback(response) {
             $scope.view.authorsArray = response.data.results;
             console.log($scope.view.authorsArray);
             var authors = response.data.results;
